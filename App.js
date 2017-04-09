@@ -6,25 +6,10 @@ var ReactNative = require('react-native');
 import {
   View,
   Text,
-  AppRegistry,
-  StyleSheet
+  AppRegistry
 } from 'react-native';
 
-var Style = StyleSheet.create({
-  rootContainer: {
-    flex: 1
-  },
-  
-  displayContainer: {
-    flex: 2,
-    backgroundColor: '#193441'
-  },
-  
-  inputContainer: {
-    flex: 8,
-    backgroundColor: '#3E606F'
-  }
-});
+import Style from './Style';
 
 export default class Calculator extends React.Component {
   render() {
