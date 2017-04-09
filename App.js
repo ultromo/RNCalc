@@ -3,37 +3,38 @@
 var React = require('react');
 var ReactNative = require('react-native');
 
-var SearchPage = require('./SearchPage');
+import {
+  View,
+  Text,
+  AppRegistry,
+  StyleSheet
+} from 'react-native';
 
-var styles = ReactNative.StyleSheet.create({
-  text: {
-    color: 'black',
-    backgroundColor: 'white',
-    fontSize: 30,
-    margin: 80
-  },
-  container: {
+var Style = StyleSheet.create({
+  rootContainer: {
     flex: 1
+  },
+  
+  displayContainer: {
+    flex: 2,
+    backgroundColor: '#193441'
+  },
+  
+  inputContainer: {
+    flex: 8,
+    backgroundColor: '#3E606F'
   }
 });
 
-class HelloWorld extends React.Component {
-  render() {
-    return <ReactNative.Text style={styles.text}>Hello world lol</ReactNative.Text>;
-  }
-}
-
-export default class PropertyFinderApp extends React.Component {
+export default class Calculator extends React.Component {
   render() {
     return (
-      <ReactNative.NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'Property Finder',
-          component: SearchPage,
-        }}/>
-    );
+      <View style={Style.rootContainer}>
+        <View style={Style.displayContainer}></View>
+        <View style={Style.inputContainer}></View>
+      </View>
+    )
   }
 }
 
-ReactNative.AppRegistry.registerComponent('PropertyFinder', function() { return PropertyFinderApp });
+ReactNative.AppRegistry.registerComponent('Calculator', function() { return Calculator });
