@@ -30,6 +30,10 @@ var Style = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000'
   },
+  
+  inputButtonHighlighted: {
+    backgroundColor: '#999999'
+  },
 
   inputButtonText: {
     fontSize: 36,

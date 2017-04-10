@@ -27,7 +27,9 @@ export default class Calculator extends React.Component {
     super(props);
     
     this.state = {
-      inputValue: 0
+      previousInputValue: 0,
+      inputValue: 0,
+      selectedSymbol: null
     }
   }
   
@@ -57,6 +59,7 @@ export default class Calculator extends React.Component {
         inputRow.push(
           <InputButton
             value={input}
+            highlight={this.state.selectedSymbol === input}
             onPress={this._onInputButtonPressed.bind(this, input)}
             key={r + "-" + i}/>
           );
@@ -72,8 +75,10 @@ export default class Calculator extends React.Component {
     switch (typeof input){
       case 'number':
         return this._handleNumberInput(input)
+      case 'string':
+        return this._handleStringInput(input)
     }
-    alert(input)
+    //alert(input)
   }
   
   _handleNumberInput(num){
@@ -82,6 +87,43 @@ export default class Calculator extends React.Component {
     this.setState({
       inputValue: inputValue
     })
+  }
+  
+  _handleStringInput(str) {
+    switch (str) {
+      case 'AC':
+        this.setState({
+          selectedSymbol: null,
+          previousInputValue: 0,
+          inputValue: 0
+        });
+        break;
+      case '/':
+      case '*':
+      case '+':
+      case '-':
+        this.setState({
+          selectedSymbol: str,
+          previousInputValue: this.state.inputValue,
+          inputValue: 0
+        });
+        break;
+      case '=':
+        let symbol = this.state.selectedSymbol,
+          inputValue = this.state.inputValue,
+          previousInputValue = this.state.previousInputValue;
+        
+        if (!symbol){
+          return;
+        }
+        
+        this.setState({
+          previousInputValue: 0,
+          inputValue: eval(previousInputValue + symbol + inputValue),
+          selectedSymbol: null
+        });
+        break;
+    }
   }
 }
 
