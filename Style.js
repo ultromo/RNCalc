@@ -19,14 +19,18 @@ var Style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: '#000000'
   },
 
   inputButtonText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: 'white'
+    fontSize: 36,
+    color: 'grey'
+  },
+  
+  inputRow: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 
