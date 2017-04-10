@@ -29,7 +29,8 @@ export default class Calculator extends React.Component {
     this.state = {
       previousInputValue: 0,
       inputValue: 0,
-      selectedSymbol: null
+      selectedSymbol: null,
+      divBy: 1
     }
   }
   
@@ -82,30 +83,51 @@ export default class Calculator extends React.Component {
   }
   
   _handleNumberInput(num){
-    let inputValue = (this.state.inputValue * 10) + num;
-    
-    this.setState({
-      inputValue: inputValue
-    })
+    if (this.state.divBy == 1){
+      let inputValue = (this.state.inputValue * 10) + num;
+      
+      this.setState({
+        inputValue: inputValue
+      })
+    }
+    else{
+      this.setState({
+        inputValue: this.state.inputValue + num / this.state.divBy,
+        divBy: 10 * this.state.divBy
+      })
+    }
   }
   
   _handleStringInput(str) {
     switch (str) {
+      case "+/-":
+        this.setState({
+          inputValue: (0 - this.state.inputValue)
+        });
+        break;
+      case 'ln':
+        this.setState({
+          inputValue: Math.log(this.state.inputValue)
+        });
+        break;
       case 'AC':
         this.setState({
           selectedSymbol: null,
           previousInputValue: 0,
-          inputValue: 0
+          inputValue: 0,
+          divBy: 1
         });
         break;
       case '/':
       case '*':
       case '+':
       case '-':
+      case '%':
         this.setState({
           selectedSymbol: str,
           previousInputValue: this.state.inputValue,
-          inputValue: 0
+          inputValue: 0,
+          divBy: 1
         });
         break;
       case '=':
@@ -120,8 +142,16 @@ export default class Calculator extends React.Component {
         this.setState({
           previousInputValue: 0,
           inputValue: eval(previousInputValue + symbol + inputValue),
-          selectedSymbol: null
+          selectedSymbol: null,
+          divBy: 1
         });
+        break;
+      case '.':
+        if (this.state.divBy == 1){
+          this.setState({
+            divBy: 10
+          });
+        }
         break;
     }
   }
