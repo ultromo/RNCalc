@@ -11,6 +11,16 @@ import {
 
 import Style from './Style';
 
+import InputButton from './InputButton';
+
+const inputButtons = [
+  ['AC', '+/-', '%', '/'],
+  [7, 8, 9, '*'],
+  [4, 5, 6, '-'],
+  [7, 8, 9, '+'],
+  [0, '.', 'ln', '=']
+];
+
 export default class Calculator extends React.Component {
   render() {
     return (
