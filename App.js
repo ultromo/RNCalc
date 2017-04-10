@@ -6,7 +6,8 @@ var ReactNative = require('react-native');
 import {
   View,
   Text,
-  AppRegistry
+  AppRegistry,
+  StatusBar
 } from 'react-native';
 
 import Style from './Style';
@@ -37,6 +38,10 @@ export default class Calculator extends React.Component {
   render() {
     return (
       <View style={Style.rootContainer}>
+        <StatusBar
+          backgroundColor="black"
+          barStyle="light-content"
+        />
         <View style={Style.displayContainer}>
           <Text style={Style.displayText}>{this.state.inputValue}</Text>
         </View>
