@@ -7,7 +7,15 @@ var Style = StyleSheet.create({
   
   displayContainer: {
     flex: 2,
-    backgroundColor: '#000000'
+    backgroundColor: '#000000',
+    justifyContent: 'center'
+  },
+  
+  displayText: {
+    color: 'white',
+    fontSize: 60,
+    textAlign: 'right',
+    padding: 20
   },
   
   inputContainer: {
