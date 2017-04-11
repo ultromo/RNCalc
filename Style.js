@@ -5,8 +5,21 @@ var Style = StyleSheet.create({
     flex: 1
   },
   
+  navContainer: {
+    flex: 1,
+    backgroundColor: '#000000',
+    justifyContent: 'center'
+  },
+  
+  disContainer: {
+    flex: 4,
+    backgroundColor: '#000000',
+    justifyContent: 'center'
+  },
+  
   displayContainer: {
     flex: 2,
+    flexDirection: 'row',
     backgroundColor: '#000000',
     justifyContent: 'center'
   },
@@ -43,6 +56,12 @@ var Style = StyleSheet.create({
   inputRow: {
     flex: 1,
     flexDirection: 'row'
+  },
+  
+  menuText: {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'center',
   }
 });
 
