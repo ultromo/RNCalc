@@ -1,1 +1,1 @@
-This is a calculator application for iOS written in React Native.
+This is a calculator application written in React Native. At the moment, this project doesn't use any iOS-specific components and should work on Android, but there's no guarantee that this will continue to be the case.
