@@ -13,6 +13,8 @@ import {
 
 import ClassicCalculator from './ClassicCalculator';
 
+import ScientificCalculator from './ScientificCalculator';
+
 import SettingsPage from './SettingsPage';
 
 import MainNaviPage from './MainNaviPage';
@@ -33,6 +35,8 @@ export default class CalculatorApplication extends React.Component {
     switch(route.screen) {
       case 'ClassicCalculator':
         return <ClassicCalculator navigator={nav} />
+      case 'ScientificCalculator':
+        return <ScientificCalculator navigator={nav} />
       case 'MainNaviPage':
         return <MainNaviPage navigator={nav} />
       case 'SettingsPage':

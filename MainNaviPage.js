@@ -32,7 +32,7 @@ export default class MainNaviPage extends Component {
   }
   
   _goScientificCalculator() {
-    //this.props.navigator.replacePreviousAndPop({ id: 'ScientificCalculator' });
+    this.props.navigator.replacePreviousAndPop({ screen: 'ScientificCalculator' });
   }
   
   _goSettings() {
