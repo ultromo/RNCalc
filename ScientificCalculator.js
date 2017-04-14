@@ -67,7 +67,7 @@ export default class ScientificCalculator extends React.Component {
             <Text style={Style.displayText}>{this.state.displayExpression}</Text>
           </View>
         </View>
-        <View style={Style.inputContainer}>
+        <View style={[Style.inputContainer, { backgroundColor: 'rgb('+GLOBAL.BR+','+GLOBAL.BG+','+GLOBAL.BB+')' }]}>
           {this._renderInputButtons()}
         </View>
       </View>

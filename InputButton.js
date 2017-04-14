@@ -15,7 +15,7 @@ export default class InputButton extends Component {
       <TouchableHighlight style={[Style.inputButton, this.props.highlight ? Style.inputButtonHighlighted : null]}
         underlayColor="#999999"
         onPress={this.props.onPress}>
-        <Text style={[Style.inputButtonText, { fontSize: GLOBAL.IBS }]}>{this.props.value}</Text>
+        <Text style={[Style.inputButtonText, { fontSize: GLOBAL.IBS, color: 'rgb('+GLOBAL.TR+','+GLOBAL.TG+','+GLOBAL.TB+')' }]}>{this.props.value}</Text>
       </TouchableHighlight>
     )
   }

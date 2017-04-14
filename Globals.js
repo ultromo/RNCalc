@@ -7,5 +7,11 @@ module.exports = {
   RSTOI: true,
   DEDUP: true,
   STRICT: true,
-  IBS: 36
+  IBS: 36,
+  BR: 221,
+  BG: 221,
+  BB: 221,
+  TR: 128,
+  TG: 128,
+  TB: 128 
 }

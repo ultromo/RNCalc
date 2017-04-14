@@ -21,9 +21,6 @@ export default class MoreSettings extends Component {
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
         <View style={Style.inputButton}>
-          <Text style={Style.inputButtonText}>Colour Settings</Text>
-        </View>
-        <View style={Style.inputButton}>
           <Text style={Style.inputButtonText}>Font size</Text>
         </View>
         <View>
@@ -35,12 +32,19 @@ export default class MoreSettings extends Component {
             onSlidingComplete={(value) => {GLOBAL.IBS=value}}
             />
         </View>
+        <TouchableHighlight style={Style.inputButton} onPress={this._goColourSettings.bind(this)}>
+          <Text style={Style.inputButtonText}>Colour Settings</Text>
+        </TouchableHighlight>
       </View>
     )
   }
   
   _goBack() {
     this.props.navigator.pop();
+  }
+  
+  _goColourSettings(){
+    this.props.navigator.push({ screen: 'ColourSettings' });
   }
 }
 

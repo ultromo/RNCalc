@@ -23,6 +23,8 @@ import Style from './Style';
 
 import MoreSettings from './MoreSettings';
 
+import ColourSettings from './ColourSettings';
+
 export default class CalculatorApplication extends React.Component {
   render() {
     return (
@@ -45,6 +47,8 @@ export default class CalculatorApplication extends React.Component {
         return <SettingsPage navigator={nav} />
       case 'MoreSettings':
         return <MoreSettings navigator={nav} />
+      case 'ColourSettings':
+        return <ColourSettings navigator={nav} />
     }
   }
 }
