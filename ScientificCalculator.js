@@ -233,7 +233,9 @@ export default class ScientificCalculator extends React.Component {
         this.AnsMode = true;
         this.reflectMode = false;
         var evaluatedAnswer = this._evaluateExpression(this.expression);
-        this._pushExpressionHistory(this.expression, this.expressionInsert);
+        if (this.expression.length > 0){
+          this._pushExpressionHistory(this.expression, this.expressionInsert);
+        }
         this.expression = [];
         this.expressionInsert = 0;
         if (GLOBAL.SFO == true){
