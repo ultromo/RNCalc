@@ -115,7 +115,7 @@ export default class ScientificCalculator extends React.Component {
   }
   
   _pushExpressionHistory(ex, exI){
-    this.expressionHistory.unshift([ex, exI]);
+    this.expressionHistory.unshift([clone(ex), clone(exI)]);
   }
   
   _backExpressionHistory(){
