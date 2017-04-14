@@ -25,8 +25,7 @@ export default class CalculatorApplication extends React.Component {
   render() {
     return (
       <Navigator
-        //initialRoute={{screen: 'ClassicCalculator'}}
-        initialRoute={{screen: 'ScientificCalculator'}}
+        initialRoute={{screen: 'ClassicCalculator'}}
         renderScene={(route, nav) => {return this.renderScene(route, nav)}}
       />
     )

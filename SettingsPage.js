@@ -11,7 +11,8 @@ export default class SettingsPage extends Component {
     super(props);
     
     this.state = {
-      SFSwitchOn: GLOBAL.SFO
+      SFSwitchOn: GLOBAL.SFO,
+      AMSwitchOn: GLOBAL.STRICT
     }
   }
   
@@ -26,6 +27,12 @@ export default class SettingsPage extends Component {
           <Switch
             onValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
             value={this.state.SFSwitchOn} />
+        </View>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Strict mode</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.STRICT=value; this.setState({AMSwitchOn: value})}}
+            value={this.state.AMSwitchOn} />
         </View>
         <View style={Style.inputButton}>
           <Text style={Style.inputButtonText}>Precision</Text>

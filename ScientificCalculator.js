@@ -116,7 +116,42 @@ export default class ScientificCalculator extends React.Component {
     var evExpression = '';
     for (var r = 0; r < this.expression.length; r++){
       let subExp = this.expression[r];
-      evExpression = evExpression.concat(subExp);
+      switch (subExp) {
+        case 'π':
+          evExpression = evExpression.concat(' Math.PI ');
+          break;
+        case 'e':
+          evExpression = evExpression.concat(' Math.E ');
+          break;
+        case 'sin(':
+          evExpression = evExpression.concat(' Math.sin( ');
+          break;
+        case 'cos(':
+          evExpression = evExpression.concat(' Math.cos( ');
+          break;
+        case 'tan(':
+          evExpression = evExpression.concat(' Math.tan( ');
+          break;
+        case 'exp(':
+          evExpression = evExpression.concat(' Math.exp( ');
+          break;
+        case 'pow(':
+          evExpression = evExpression.concat(' Math.pow( ');
+          break;
+        case 'ln(':
+          evExpression = evExpression.concat(' Math.log( ');
+          break;
+        case 'Ans':
+          if (GLOBAL.STRICT == true){
+            evExpression = evExpression.concat('(' + this.Ans.toString() + ')');
+          }
+          else{
+            evExpression = evExpression.concat(this.Ans.toString());
+          }
+          break;
+        default:
+          evExpression = evExpression.concat(subExp);
+      }
     }
     console.log(evExpression);
     try{
@@ -140,12 +175,13 @@ export default class ScientificCalculator extends React.Component {
         this._renderExpression();
         return;
       case '=':
+        var evaluatedAnswer = this._evaluateExpression(this.expression);
         if (GLOBAL.SFO == true){
-          var evaluatedAnswer = this._evaluateExpression(this.expression);
           if (typeof(evaluatedAnswer) === 'number'){
             this.setState({
               displayExpression: evaluatedAnswer.toPrecision(GLOBAL.SF)
             });
+            this.Ans = evaluatedAnswer;
           }
           else{
             this.setState({
@@ -154,10 +190,12 @@ export default class ScientificCalculator extends React.Component {
           }
         }
         else{
-          evaluatedAnswer = this._evaluateExpression(this.expression);
           this.setState({
             displayExpression: evaluatedAnswer
           });
+          if (typeof(evaluatedAnswer) === 'number'){
+            this.Ans = evaluatedAnswer;
+          }
         }
         return;
       case '←':
