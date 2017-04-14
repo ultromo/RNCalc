@@ -3,6 +3,8 @@
 var React = require('react');
 var ReactNative = require('react-native');
 
+import clone from './clone';
+
 GLOBAL = require('./Globals');
 
 import {
@@ -122,7 +124,7 @@ export default class ScientificCalculator extends React.Component {
     console.log("Backward");
     console.log(this.expressionHistory, this.expressionPointer);
     if (this.expressionPointer < this.expressionHistory.length){
-      [this.expression, this.expressionInsert] = this.expressionHistory[this.expressionPointer];
+      [this.expression, this.expressionInsert] = clone(this.expressionHistory[this.expressionPointer]);
       this.expressionPointer += 1;
       this._renderExpression();
       this.reflectMode = true;
@@ -134,7 +136,7 @@ export default class ScientificCalculator extends React.Component {
     console.log(this.expressionHistory, this.expressionPointer);
     if (this.expressionPointer > 1 && this.expressionHistory.length > 0){
       this.expressionPointer -= 2;
-      [this.expression, this.expressionInsert] = this.expressionHistory[this.expressionPointer];
+      [this.expression, this.expressionInsert] = clone(this.expressionHistory[this.expressionPointer]);
       this.expressionPointer += 1;
       this._renderExpression();
     }

@@ -1,33 +1,19 @@
 export default function clone(obj) {
-    var copy;
+  if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
+    return obj;
 
-    // Handle the 3 simple types, and null or undefined
-    if (null == obj || "object" != typeof obj) return obj;
+  if (obj instanceof Date)
+    var temp = new obj.constructor(); //or new Date(obj);
+  else
+    var temp = obj.constructor();
 
-    // Handle Date
-    if (obj instanceof Date) {
-        copy = new Date();
-        copy.setTime(obj.getTime());
-        return copy;
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      obj['isActiveClone'] = null;
+      temp[key] = clone(obj[key]);
+      delete obj['isActiveClone'];
     }
+  }
 
-    // Handle Array
-    if (obj instanceof Array) {
-        copy = [];
-        for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = clone(obj[i]);
-        }
-        return copy;
-    }
-
-    // Handle Object
-    if (obj instanceof Object) {
-        copy = {};
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-        }
-        return copy;
-    }
-
-    throw new Error("Unable to copy obj! Its type isn't supported.");
+  return temp;
 }
