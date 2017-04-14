@@ -12,7 +12,7 @@ var Style = StyleSheet.create({
   },
   
   disContainer: {
-    flex: 4,
+    flex: 7,
     backgroundColor: '#000000',
     justifyContent: 'center'
   },

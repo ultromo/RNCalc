@@ -18,25 +18,28 @@ import Style from './Style';
 import InputButton from './InputButton';
 
 const inputButtons = [
-  ['π', 'e', 'sin', 'cos'],
-  ['tan', '(', ')', 'exp'],
-  ['AC', '(-)', '%', '/'],
-  [7, 8, 9, '*'],
-  [4, 5, 6, '-'],
-  [1, 2, 3, '+'],
-  [0, '.', 'ln(', '=']
+  ['Ans', ',', '←', '→', '↑', '↓'],
+  ['(', ')', 'π', 'e', 'pow('],
+  ['AC', '(-)', '%', '/', '⌫'],
+  [7, 8, 9, '*', 'sin('],
+  [4, 5, 6, '-', 'cos('],
+  [1, 2, 3, '+', 'tan('],
+  [0, '.', 'ln(', 'exp(', '=']
 ];
 
 export default class ScientificCalculator extends React.Component {
+  
+  expression = [];
+  expressionInsert = 0;
+  dExpression = '';
+  Ans = 0;
   
   constructor(props) {
     super(props);
     
     this.state = {
       previousInputValue: 0,
-      inputValue: 0,
-      selectedSymbol: null,
-      divBy: 1
+      displayExpression: '|',
     }
   }
   
@@ -54,12 +57,7 @@ export default class ScientificCalculator extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={Style.disContainer}>
-            {(GLOBAL.SFO == false || GLOBAL.UIN == true) &&
-              <Text style={Style.displayText}>{this.state.inputValue}</Text>
-            }
-            {(GLOBAL.SFO == true && GLOBAL.UIN == false) &&
-              <Text style={Style.displayText}>{this.state.inputValue.toPrecision(GLOBAL.SF)}</Text>
-            }
+            <Text style={Style.displayText}>{this.state.displayExpression}</Text>
           </View>
         </View>
         <View style={Style.inputContainer}>
@@ -86,7 +84,6 @@ export default class ScientificCalculator extends React.Component {
         inputRow.push(
           <InputButton
             value={input}
-            highlight={this.state.selectedSymbol === input}
             onPress={this._onInputButtonPressed.bind(this, input)}
             key={r + "-" + i}/>
           );
@@ -99,91 +96,96 @@ export default class ScientificCalculator extends React.Component {
   }
   
   _onInputButtonPressed(input) {
-    switch (typeof input){
-      case 'number':
-        return this._handleNumberInput(input)
-      case 'string':
-        return this._handleStringInput(input)
-    }
-    //alert(input)
+    return this._handleInput(input)
   }
   
-  _handleNumberInput(num){
-    GLOBAL.UIN = true;
-    if (this.state.divBy == 1){
-      let inputValue = (this.state.inputValue * 10) + num;
-      
-      this.setState({
-        inputValue: inputValue
-      })
+  _renderExpression(){
+    this.dExpression = '';
+    this.expression.splice(this.expressionInsert, 0, '|');
+    for (var r = 0; r < this.expression.length; r++){
+      let subExp = this.expression[r];
+      this.dExpression = this.dExpression.concat(subExp);
     }
-    else{
-      this.setState({
-        inputValue: this.state.inputValue + num / this.state.divBy,
-        divBy: 10 * this.state.divBy
-      })
+    this.setState({
+      displayExpression: this.dExpression
+    });
+    this.expression.splice(this.expressionInsert, 1);
+  }
+  
+  _evaluateExpression(){
+    var evExpression = '';
+    for (var r = 0; r < this.expression.length; r++){
+      let subExp = this.expression[r];
+      evExpression = evExpression.concat(subExp);
+    }
+    console.log(evExpression);
+    try{
+      var a = eval(evExpression);
+      return a;
+    }
+    catch(err){
+      var a = err;
+      return a.toString();
     }
   }
   
-  _handleStringInput(str) {
+  _handleInput(str) {
     switch (str) {
-      case "+/-":
-        this.setState({
-          inputValue: (0 - this.state.inputValue)
-        });
-        break;
-      case 'ln':
-        GLOBAL.UIN = false;
-        this.setState({
-          inputValue: Math.log(this.state.inputValue)
-        });
+      case '(-)':
+        str = '-';
         break;
       case 'AC':
-        GLOBAL.UIN = true;
-        this.setState({
-          selectedSymbol: null,
-          previousInputValue: 0,
-          inputValue: 0,
-          divBy: 1
-        });
-        break;
-      case '/':
-      case '*':
-      case '+':
-      case '-':
-      case '%':
-        GLOBAL.UIN = true;
-        this.setState({
-          selectedSymbol: str,
-          previousInputValue: this.state.inputValue,
-          inputValue: 0,
-          divBy: 1
-        });
-        break;
+        this.expression = [];
+        this.expressionInsert = 0;
+        this._renderExpression();
+        return;
       case '=':
-        GLOBAL.UIN = false;
-        let symbol = this.state.selectedSymbol,
-          inputValue = this.state.inputValue,
-          previousInputValue = this.state.previousInputValue;
-        
-        if (!symbol){
-          return;
+        if (GLOBAL.SFO == true){
+          var evaluatedAnswer = this._evaluateExpression(this.expression);
+          if (typeof(evaluatedAnswer) === 'number'){
+            this.setState({
+              displayExpression: evaluatedAnswer.toPrecision(GLOBAL.SF)
+            });
+          }
+          else{
+            this.setState({
+              displayExpression: evaluatedAnswer
+            });
+          }
         }
-        
-        this.setState({
-          previousInputValue: 0,
-          inputValue: eval(previousInputValue + symbol + inputValue),
-          selectedSymbol: null,
-          divBy: 1
-        });
-        break;
-      case '.':
-        if (this.state.divBy == 1){
+        else{
+          evaluatedAnswer = this._evaluateExpression(this.expression);
           this.setState({
-            divBy: 10
+            displayExpression: evaluatedAnswer
           });
         }
-        break;
+        return;
+      case '←':
+        if (this.expressionInsert > 0){
+          this.expressionInsert -= 1;
+        }
+        this._renderExpression();
+        return;
+      case '→':
+        if (this.expressionInsert < this.expression.length){
+          this.expressionInsert += 1;
+        }
+        this._renderExpression();
+        return;
+      case '↑':
+        return;
+      case '↓':
+        return;
+      case '⌫':
+        if (this.expressionInsert > 0){
+          this.expressionInsert -= 1;
+          this.expression.splice(this.expressionInsert, 1);
+          this._renderExpression();
+        }
+        return;
     }
+    this.expression.splice(this.expressionInsert, 0, str);
+    this.expressionInsert += 1;
+    this._renderExpression();
   }
 }
