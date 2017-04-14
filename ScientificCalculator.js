@@ -209,6 +209,9 @@ export default class ScientificCalculator extends React.Component {
     console.log(evExpression);
     try{
       var a = eval(evExpression);
+      if (GLOBAL.MDP == true){
+        a = parseFloat(a.toFixed(10));
+      }
       return a;
     }
     catch(err){

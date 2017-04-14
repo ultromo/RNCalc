@@ -12,7 +12,8 @@ export default class SettingsPage extends Component {
     
     this.state = {
       SFSwitchOn: GLOBAL.SFO,
-      AMSwitchOn: GLOBAL.STRICT
+      AMSwitchOn: GLOBAL.STRICT,
+      MDSwitchOn: GLOBAL.MDP
     }
   }
   
@@ -23,16 +24,22 @@ export default class SettingsPage extends Component {
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
         <View style={Style.inputButton}>
-          <Text style={Style.inputButtonText}>Display all answers to Sf</Text>
-          <Switch
-            onValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
-            value={this.state.SFSwitchOn} />
-        </View>
-        <View style={Style.inputButton}>
           <Text style={Style.inputButtonText}>Strict mode</Text>
           <Switch
             onValueChange={(value) => {GLOBAL.STRICT=value; this.setState({AMSwitchOn: value})}}
             value={this.state.AMSwitchOn} />
+        </View>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Limit dp</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.MDP=value; this.setState({MDSwitchOn: value})}}
+            value={this.state.MDSwitchOn} />
+        </View>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Display all answers to Sf</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
+            value={this.state.SFSwitchOn} />
         </View>
         <View style={Style.inputButton}>
           <Text style={Style.inputButtonText}>Precision</Text>
