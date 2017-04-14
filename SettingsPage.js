@@ -23,7 +23,7 @@ export default class SettingsPage extends Component {
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
         <View style={Style.inputButton}>
-          <Text style={Style.inputButtonText}>Display all numbers to Sf</Text>
+          <Text style={Style.inputButtonText}>Display all answers to Sf</Text>
           <Switch
             onValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
             value={this.state.SFSwitchOn} />

@@ -36,6 +36,7 @@ export default class ScientificCalculator extends React.Component {
   dExpression = '';
   Ans = 0;
   AnsMode = false;
+  reflectMode = false;
   
   constructor(props) {
     super(props);
@@ -107,6 +108,9 @@ export default class ScientificCalculator extends React.Component {
     this.expressionInsert = 0;
     this.expressionHistory = [];
     this.expressionPointer = 0;
+    this.Ans = 0;
+    this.AnsMode = false;
+    this.reflectMode = false;
     this._renderExpression();
   }
   
@@ -121,6 +125,7 @@ export default class ScientificCalculator extends React.Component {
       [this.expression, this.expressionInsert] = this.expressionHistory[this.expressionPointer];
       this.expressionPointer += 1;
       this._renderExpression();
+      this.reflectMode = true;
     }
   }
   
@@ -138,6 +143,7 @@ export default class ScientificCalculator extends React.Component {
       this.expressionInsert = 0;
       this.expressionPointer = 0;
       this._renderExpression()
+      this.reflectMode = false;
     }
   }
   
@@ -207,7 +213,7 @@ export default class ScientificCalculator extends React.Component {
   }
   
   _handleInput(str) {
-    if (str !== '↑' && str != '↓'){
+    if (str !== '↑' && str !== '↓'){
       this.AnsMode = false;
     }
     switch (str) {
@@ -225,6 +231,7 @@ export default class ScientificCalculator extends React.Component {
       case '=':
         this.expressionPointer = 0;
         this.AnsMode = true;
+        this.reflectMode = false;
         var evaluatedAnswer = this._evaluateExpression(this.expression);
         this._pushExpressionHistory(this.expression, this.expressionInsert);
         this.expression = [];
@@ -264,6 +271,11 @@ export default class ScientificCalculator extends React.Component {
         this._renderExpression();
         return;
       case '↑':
+        if (this.expression.length > 0 && this.AnsMode == false && this.reflectMode == false){
+          this._pushExpressionHistory(this.expression, this.expressionInsert);
+          this.expressionPointer += 1;
+          this.AnsMode = true;
+        }
         this._backExpressionHistory();
         return;
       case '↓':
