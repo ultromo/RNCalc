@@ -21,6 +21,8 @@ import MainNaviPage from './MainNaviPage';
 
 import Style from './Style';
 
+import MoreSettings from './MoreSettings';
+
 export default class CalculatorApplication extends React.Component {
   render() {
     return (
@@ -41,6 +43,8 @@ export default class CalculatorApplication extends React.Component {
         return <MainNaviPage navigator={nav} />
       case 'SettingsPage':
         return <SettingsPage navigator={nav} />
+      case 'MoreSettings':
+        return <MoreSettings navigator={nav} />
     }
   }
 }

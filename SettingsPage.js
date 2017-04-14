@@ -74,15 +74,19 @@ export default class SettingsPage extends Component {
             onSlidingComplete={(value) => {GLOBAL.SF=value}}
             />
         </View>
-        <View style={Style.inputButton}>
-          <Text style={Style.inputButtonText}>Settings</Text>
-        </View>
+        <TouchableHighlight style={Style.inputButton} onPress={this._goMoreSettings.bind(this)}>
+          <Text style={Style.inputButtonText}>More Settings</Text>
+        </TouchableHighlight>
       </View>
     )
   }
   
   _goBack() {
     this.props.navigator.pop();
+  }
+  
+  _goMoreSettings() {
+    this.props.navigator.push({ screen: 'MoreSettings' });
   }
 }
 

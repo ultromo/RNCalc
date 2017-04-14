@@ -6,5 +6,6 @@ module.exports = {
   RSTOE: false,
   RSTOI: true,
   DEDUP: true,
-  STRICT: true
+  STRICT: true,
+  IBS: 36
 }
