@@ -3,5 +3,8 @@ module.exports = {
   SFO: false,
   UIN: true,
   MDP: true,
+  RSTOE: false,
+  RSTOI: true,
+  DEDUP: true,
   STRICT: true
 }

@@ -38,6 +38,7 @@ export default class ScientificCalculator extends React.Component {
   dExpression = '';
   Ans = 0;
   AnsMode = false;
+  ActlAnsMode = false;
   reflectMode = false;
   
   constructor(props) {
@@ -117,6 +118,14 @@ export default class ScientificCalculator extends React.Component {
   }
   
   _pushExpressionHistory(ex, exI){
+    if (GLOBAL.DEDUP && this.expressionHistory.length > 0){
+      let prevEx = this.expressionHistory[0][0];
+      console.log(prevEx);
+      console.log(ex);
+      if (JSON.stringify(prevEx) == JSON.stringify(ex)){
+        return;
+      }
+    }
     this.expressionHistory.unshift([clone(ex), clone(exI)]);
   }
   
@@ -150,6 +159,11 @@ export default class ScientificCalculator extends React.Component {
       this._renderExpression()
       this.reflectMode = false;
     }
+  }
+  
+  _resetExpression(){
+    this.expression = [];
+    this.expressionInsert = 0;
   }
   
   _renderExpression(){
@@ -207,6 +221,9 @@ export default class ScientificCalculator extends React.Component {
       }
     }
     console.log(evExpression);
+    if (this.expression.length == 0){
+      return 0;
+    }
     try{
       var a = eval(evExpression);
       if (GLOBAL.MDP == true){
@@ -215,12 +232,18 @@ export default class ScientificCalculator extends React.Component {
       return a;
     }
     catch(err){
-      var a = err;
-      return a.toString();
+      //var a = err;
+      //return a.toString();
+      return "Syntax error";
     }
   }
   
   _handleInput(str) {
+    if (this.ActlAnsMode == true && GLOBAL.RSTOI && str !== "="){
+      this._resetExpression();
+      this._renderExpression();
+    }
+    this.ActlAnsMode = false;
     if (str !== '↑' && str !== '↓'){
       this.AnsMode = false;
     }
@@ -238,6 +261,7 @@ export default class ScientificCalculator extends React.Component {
         this._renderExpression();
         return;
       case '=':
+        this.ActlAnsMode = true;
         this.expressionPointer = 0;
         this.AnsMode = true;
         this.reflectMode = false;
@@ -245,8 +269,10 @@ export default class ScientificCalculator extends React.Component {
         if (this.expression.length > 0){
           this._pushExpressionHistory(this.expression, this.expressionInsert);
         }
-        this.expression = [];
-        this.expressionInsert = 0;
+        if (GLOBAL.RSTOE){
+          this.expression = [];
+          this.expressionInsert = 0;
+        }
         if (GLOBAL.SFO == true){
           if (typeof(evaluatedAnswer) === 'number'){
             this.setState({

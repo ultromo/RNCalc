@@ -13,7 +13,10 @@ export default class SettingsPage extends Component {
     this.state = {
       SFSwitchOn: GLOBAL.SFO,
       AMSwitchOn: GLOBAL.STRICT,
-      MDSwitchOn: GLOBAL.MDP
+      MDSwitchOn: GLOBAL.MDP,
+      RSSwitchOn: GLOBAL.RSTOE,
+      RISwitchOn: GLOBAL.RSTOI,
+      DESwitchOn: GLOBAL.DEDUP
     }
   }
   
@@ -23,6 +26,24 @@ export default class SettingsPage extends Component {
         <TouchableHighlight style={Style.inputButton} onPress={this._goBack.bind(this)}>
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Clear expression on eval</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.RSTOE=value; this.setState({RSSwitchOn: value})}}
+            value={this.state.RSSwitchOn} />
+        </View>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Clear expression on input</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.RSTOI=value; this.setState({RISwitchOn: value})}}
+            value={this.state.RISwitchOn} />
+        </View>
+        <View style={Style.inputButton}>
+          <Text style={Style.inputButtonText}>Deduplicate history</Text>
+          <Switch
+            onValueChange={(value) => {GLOBAL.DEDUP=value; this.setState({DESwitchOn: value})}}
+            value={this.state.DESwitchOn} />
+        </View>
         <View style={Style.inputButton}>
           <Text style={Style.inputButtonText}>Strict mode</Text>
           <Switch
