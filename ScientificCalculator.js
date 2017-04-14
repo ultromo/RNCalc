@@ -19,8 +19,8 @@ import InputButton from './InputButton';
 
 const inputButtons = [
   ['Ans', ',', '←', '→', '↑', '↓'],
-  ['(', ')', 'π', 'e', 'pow('],
-  ['AC', '(-)', '%', '/', '⌫'],
+  ['AC', 'RST', '(-)', 'π', 'e', '⌫'],
+  ['(', ')', '%', '/', 'pow('],
   [7, 8, 9, '*', 'sin('],
   [4, 5, 6, '-', 'cos('],
   [1, 2, 3, '+', 'tan('],
@@ -30,9 +30,12 @@ const inputButtons = [
 export default class ScientificCalculator extends React.Component {
   
   expression = [];
+  expressionHistory = [];
+  expressionPointer = 0;
   expressionInsert = 0;
   dExpression = '';
   Ans = 0;
+  AnsMode = false;
   
   constructor(props) {
     super(props);
@@ -97,6 +100,45 @@ export default class ScientificCalculator extends React.Component {
   
   _onInputButtonPressed(input) {
     return this._handleInput(input)
+  }
+  
+  _resetAll(){
+    this.expression = [];
+    this.expressionInsert = 0;
+    this.expressionHistory = [];
+    this.expressionPointer = 0;
+    this._renderExpression();
+  }
+  
+  _pushExpressionHistory(ex, exI){
+    this.expressionHistory.unshift([ex, exI]);
+  }
+  
+  _backExpressionHistory(){
+    console.log("Backward");
+    console.log(this.expressionHistory, this.expressionPointer);
+    if (this.expressionPointer < this.expressionHistory.length){
+      [this.expression, this.expressionInsert] = this.expressionHistory[this.expressionPointer];
+      this.expressionPointer += 1;
+      this._renderExpression();
+    }
+  }
+  
+  _forwardExpressionHistory(){
+    console.log("Forward");
+    console.log(this.expressionHistory, this.expressionPointer);
+    if (this.expressionPointer > 1 && this.expressionHistory.length > 0){
+      this.expressionPointer -= 2;
+      [this.expression, this.expressionInsert] = this.expressionHistory[this.expressionPointer];
+      this.expressionPointer += 1;
+      this._renderExpression();
+    }
+    else{
+      this.expression = [];
+      this.expressionInsert = 0;
+      this.expressionPointer = 0;
+      this._renderExpression()
+    }
   }
   
   _renderExpression(){
@@ -165,7 +207,13 @@ export default class ScientificCalculator extends React.Component {
   }
   
   _handleInput(str) {
+    if (str !== '↑' && str != '↓'){
+      this.AnsMode = false;
+    }
     switch (str) {
+      case 'RST':
+        this._resetAll();
+        return;
       case '(-)':
         str = '-';
         break;
@@ -175,7 +223,12 @@ export default class ScientificCalculator extends React.Component {
         this._renderExpression();
         return;
       case '=':
+        this.expressionPointer = 0;
+        this.AnsMode = true;
         var evaluatedAnswer = this._evaluateExpression(this.expression);
+        this._pushExpressionHistory(this.expression, this.expressionInsert);
+        this.expression = [];
+        this.expressionInsert = 0;
         if (GLOBAL.SFO == true){
           if (typeof(evaluatedAnswer) === 'number'){
             this.setState({
@@ -211,8 +264,10 @@ export default class ScientificCalculator extends React.Component {
         this._renderExpression();
         return;
       case '↑':
+        this._backExpressionHistory();
         return;
       case '↓':
+        this._forwardExpressionHistory();
         return;
       case '⌫':
         if (this.expressionInsert > 0){
