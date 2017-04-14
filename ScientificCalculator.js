@@ -283,6 +283,7 @@ export default class ScientificCalculator extends React.Component {
           this._pushExpressionHistory(this.expression, this.expressionInsert);
           this.expressionPointer += 1;
           this.AnsMode = true;
+          this.reflectMode = true;
         }
         this._backExpressionHistory();
         return;
