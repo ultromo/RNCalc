@@ -139,6 +139,9 @@ export default class ScientificCalculator extends React.Component {
       this._renderExpression();
     }
     else{
+      if (this.reflectMode == false && this.expression.length > 0){
+        this._pushExpressionHistory(this.expression, this.expressionInsert);
+      }
       this.expression = [];
       this.expressionInsert = 0;
       this.expressionPointer = 0;
@@ -226,6 +229,7 @@ export default class ScientificCalculator extends React.Component {
       case 'AC':
         this.expression = [];
         this.expressionInsert = 0;
+        this.expressionPointer = 0;
         this._renderExpression();
         return;
       case '=':
