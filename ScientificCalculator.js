@@ -64,7 +64,7 @@ export default class ScientificCalculator extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={Style.disContainer}>
-            <Text style={Style.displayText}>{this.state.displayExpression}</Text>
+            <Text style={[Style.displayText, { fontSize: GLOBAL.DFS }]}>{this.state.displayExpression}</Text>
           </View>
         </View>
         <View style={[Style.inputContainer, { backgroundColor: 'rgb('+GLOBAL.BR+','+GLOBAL.BG+','+GLOBAL.BB+')' }]}>
@@ -126,7 +126,12 @@ export default class ScientificCalculator extends React.Component {
         return;
       }
     }
-    this.expressionHistory.unshift([clone(ex), clone(exI)]);
+    if (GLOBAL.RSCP){
+      this.expressionHistory.unshift([clone(ex), clone(ex.length)]);
+    }
+    else{
+      this.expressionHistory.unshift([clone(ex), clone(exI)]);
+    }
   }
   
   _backExpressionHistory(){

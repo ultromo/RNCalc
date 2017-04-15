@@ -53,10 +53,10 @@ export default class ClassicCalculator extends React.Component {
           </View>
           <View style={Style.disContainer}>
             {(GLOBAL.SFO == false || GLOBAL.UIN == true) &&
-              <Text style={Style.displayText}>{this.state.inputValue}</Text>
+              <Text style={[Style.displayText, { fontSize: GLOBAL.DFS }]}>{this.state.inputValue}</Text>
             }
             {(GLOBAL.SFO == true && GLOBAL.UIN == false) &&
-              <Text style={Style.displayText}>{this.state.inputValue.toPrecision(GLOBAL.SF)}</Text>
+              <Text style={[Style.displayText, { fontSize: GLOBAL.DFS }]}>{this.state.inputValue.toPrecision(GLOBAL.SF)}</Text>
             }
           </View>
         </View>
