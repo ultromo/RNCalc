@@ -168,12 +168,22 @@ export default class ClassicCalculator extends React.Component {
           return;
         }
         
-        this.setState({
-          previousInputValue: 0,
-          inputValue: eval(previousInputValue + symbol + inputValue),
-          selectedSymbol: null,
-          divBy: 1
-        });
+        if (GLOBAL.MDP == true){
+          this.setState({
+            previousInputValue: 0,
+            inputValue: parseFloat(eval(previousInputValue + symbol + inputValue).toFixed(10)),
+            selectedSymbol: null,
+            divBy: 1
+          });
+        }
+        else{
+          this.setState({
+            previousInputValue: 0,
+            inputValue: eval(previousInputValue + symbol + inputValue),
+            selectedSymbol: null,
+            divBy: 1
+          });
+        }
         break;
       case '.':
         if (this.state.divBy == 1){
