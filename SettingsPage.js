@@ -22,7 +22,7 @@ export default class SettingsPage extends Component {
   
   render() {
     return (
-      <View style={Style.inputContainer}>
+      <View style={Style.settingsContainer}>
         <TouchableHighlight style={Style.inputButton} onPress={this._goBack.bind(this)}>
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>

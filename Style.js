@@ -62,6 +62,11 @@ var Style = StyleSheet.create({
     fontSize: 24,
     color: 'white',
     textAlign: 'center',
+  },
+  
+  settingsContainer: {
+    flex: 8,
+    backgroundColor: '#FFFFFF'
   }
 });
 

@@ -60,7 +60,7 @@ export default class ClassicCalculator extends React.Component {
             }
           </View>
         </View>
-        <View style={[Style.inputContainer, { backgroundColor: 'rgb('+GLOBAL.BR+','+GLOBAL.BG+','+GLOBAL.BB+')' }]}>
+        <View style={[Style.inputContainer, { backgroundColor: GLOBAL.BCLR }]}>
           {this._renderInputButtons()}
         </View>
       </View>
