@@ -8,7 +8,8 @@ import {
   View,
   Image,
   Alert,
-  Slider
+  Slider,
+  StatusBar
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
@@ -32,6 +33,9 @@ export default class NewSettings extends Component {
     var bgColor = '#DCE3F4';
     return (
       <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+        <StatusBar
+          barStyle="dark-content"
+        />
         <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc'}}>
           <View>
             <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16}}>Settings</Text>
@@ -188,6 +192,10 @@ export default class NewSettings extends Component {
               step={0.5} 
               value={GLOBAL.DFS}
               onSlidingComplete={(value) => {GLOBAL.DFS=value}}
+            />
+            <SettingsList.Item
+              title='Colour Settings'
+              onPress={() => this.props.navigator.push({ screen: 'ColourSettings' })}
             />
             {/*
             <SettingsList.Item
