@@ -26,7 +26,10 @@ export default class NewSettings extends Component {
       MDSwitchOn: GLOBAL.MDP,
       RSSwitchOn: GLOBAL.RSTOE,
       RISwitchOn: GLOBAL.RSTOI,
-      DESwitchOn: GLOBAL.DEDUP
+      DESwitchOn: GLOBAL.DEDUP,
+      DFS: GLOBAL.DFS.toString(),
+      IBS: GLOBAL.IBS.toString(),
+      SF: GLOBAL.SF.toString()
     }
   }
   render() {
@@ -160,6 +163,8 @@ export default class NewSettings extends Component {
             <SettingsList.Item
               title='Precision'
               hasNavArrow={false}
+              titleInfo={this.state.SF+" sf"}
+              titleInfoStyle={styles.titleInfoStyle}
             />
             <SettingsList.Header headerStyle={{marginTop:15}}/>
             <Slider 
@@ -167,11 +172,14 @@ export default class NewSettings extends Component {
               minimumValue={2} 
               step={1} 
               value={GLOBAL.SF}
+              onValueChange={(value) => {this.setState({SF: value.toString()})}}
               onSlidingComplete={(value) => {GLOBAL.SF=value}}
             />
             <SettingsList.Item
               title='Button font size'
               hasNavArrow={false}
+              titleInfo={this.state.IBS}
+              titleInfoStyle={styles.titleInfoStyle}
             />
             <SettingsList.Header headerStyle={{marginTop:15}}/>
             <Slider 
@@ -179,11 +187,14 @@ export default class NewSettings extends Component {
               minimumValue={16} 
               step={0.5} 
               value={GLOBAL.IBS}
+              onValueChange={(value) => {this.setState({IBS: value.toString()})}}
               onSlidingComplete={(value) => {GLOBAL.IBS=value}}
             />
             <SettingsList.Item
               title='Display font size'
               hasNavArrow={false}
+              titleInfo={this.state.DFS}
+              titleInfoStyle={styles.titleInfoStyle}
             />
             <SettingsList.Header headerStyle={{marginTop:15}}/>
             <Slider 
@@ -191,6 +202,7 @@ export default class NewSettings extends Component {
               minimumValue={24} 
               step={0.5} 
               value={GLOBAL.DFS}
+              onValueChange={(value) => {this.setState({DFS: value.toString()})}}
               onSlidingComplete={(value) => {GLOBAL.DFS=value}}
             />
             <SettingsList.Item
