@@ -7,7 +7,8 @@ import {
   Text,
   View,
   Image,
-  Alert
+  Alert,
+  Slider
 } from 'react-native';
 import SettingsList from 'react-native-settings-list';
 
@@ -140,10 +141,53 @@ export default class NewSettings extends Component {
             />
             <SettingsList.Item
               hasSwitch={true}
+              switchState={this.state.RCSwitchOn}
+              switchOnValueChange={(value) => {GLOBAL.RSCP=value; this.setState({RCSwitchOn: value})}}
+              hasNavArrow={false}
+              title='Reset cursor position'
+            />
+            <SettingsList.Item
+              hasSwitch={true}
               switchState={this.state.SFSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
               hasNavArrow={false}
               title='Display all answers to Sf'
+            />
+            <SettingsList.Item
+              title='Precision'
+              hasNavArrow={false}
+            />
+            <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <Slider 
+              maximumValue={10}
+              minimumValue={2} 
+              step={1} 
+              value={GLOBAL.SF}
+              onSlidingComplete={(value) => {GLOBAL.SF=value}}
+            />
+            <SettingsList.Item
+              title='Button font size'
+              hasNavArrow={false}
+            />
+            <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <Slider 
+              maximumValue={48}
+              minimumValue={16} 
+              step={0.5} 
+              value={GLOBAL.IBS}
+              onSlidingComplete={(value) => {GLOBAL.IBS=value}}
+            />
+            <SettingsList.Item
+              title='Display font size'
+              hasNavArrow={false}
+            />
+            <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <Slider 
+              maximumValue={72}
+              minimumValue={24} 
+              step={0.5} 
+              value={GLOBAL.DFS}
+              onSlidingComplete={(value) => {GLOBAL.DFS=value}}
             />
             {/*
             <SettingsList.Item
