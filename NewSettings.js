@@ -9,9 +9,13 @@ import {
   Image,
   Alert,
   Slider,
-  StatusBar
+  StatusBar,
+  TouchableHighlight
 } from 'react-native';
+
 import SettingsList from 'react-native-settings-list';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 GLOBAL = require('./Globals');
 
@@ -29,7 +33,8 @@ export default class NewSettings extends Component {
       DESwitchOn: GLOBAL.DEDUP,
       DFS: GLOBAL.DFS.toString(),
       IBS: GLOBAL.IBS.toString(),
-      SF: GLOBAL.SF.toString()
+      SF: GLOBAL.SF.toString(),
+      BC: "#007AFF"
     }
   }
   render() {
@@ -39,9 +44,14 @@ export default class NewSettings extends Component {
         <StatusBar
           barStyle="dark-content"
         />
-        <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc'}}>
-          <View>
+        <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc',flexDirection:'row'}}>
+          <TouchableHighlight style={[{alignSelf:'center',flex:1,marginTop:30,marginBottom:10},this.props.highlight ? {alignSelf:'center',flex:1,marginTop:30,marginBottom:10,backgroundColor:'#FFFFFF'} : null]} onPress={this._goBack.bind(this)} onShowUnderlay={this._lightButton.bind(this)} onHideUnderlay={this._darkButton.bind(this)} underlayColor='#FFFFFF'>
+            <Icon name="chevron-left" size={25} color={this.state.BC} />
+          </TouchableHighlight>
+          <View style={{flex:4}}>
             <Text style={{alignSelf:'center',marginTop:30,marginBottom:10,fontWeight:'bold',fontSize:16}}>Settings</Text>
+          </View>
+          <View style={{flex:1}}>
           </View>
         </View>
         <View style={{backgroundColor:'#EFEFF4',flex:1}}>
@@ -205,10 +215,12 @@ export default class NewSettings extends Component {
               onValueChange={(value) => {this.setState({DFS: value.toString()})}}
               onSlidingComplete={(value) => {GLOBAL.DFS=value}}
             />
+            {/*
             <SettingsList.Item
               title='Colour Settings'
               onPress={() => this.props.navigator.push({ screen: 'ColourSettings' })}
             />
+            */}
             {/*
             <SettingsList.Item
               title='Wi-Fi'
@@ -259,6 +271,22 @@ export default class NewSettings extends Component {
         </View>
       </View>
     );
+  }
+    
+  _goBack() {
+    this.props.navigator.pop();
+  }
+  
+  _lightButton() {
+    this.setState({
+      BC: "#229CFF"
+    });
+  }
+  
+  _darkButton() {
+    this.setState({
+      BC:"#007AFF"
+    });
   }
   /*
   toggleAuthView() {

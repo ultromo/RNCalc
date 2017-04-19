@@ -20,10 +20,10 @@ export default class MainNaviPage extends Component {
           <Text style={Style.inputButtonText}>Scientific Calculator</Text>
         </TouchableHighlight>
         <TouchableHighlight style={Style.inputButton} onPress={this._goSettings.bind(this)}>
-          <Text style={Style.inputButtonText}>Settings</Text>
+          <Text style={Style.inputButtonText}>Customize colours</Text>
         </TouchableHighlight>
         <TouchableHighlight style={Style.inputButton} onPress={this._goNewSettings.bind(this)}>
-          <Text style={Style.inputButtonText}>Experimental Settings</Text>
+          <Text style={Style.inputButtonText}>Settings</Text>
         </TouchableHighlight>
       </View>
     )
@@ -42,7 +42,7 @@ export default class MainNaviPage extends Component {
   }
   
   _goSettings() {
-    this.props.navigator.push({ screen: 'SettingsPage' });
+    this.props.navigator.push({ screen: 'ColourSettings' });
   }
   
   _goNewSettings() {
