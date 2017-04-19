@@ -54,7 +54,6 @@ export default class ScientificCalculator extends React.Component {
     return (
       <View style={Style.rootContainer}>
         <StatusBar
-          backgroundColor="black"
           barStyle="light-content"
         />
         <View style={Style.displayContainer}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Switch, Slider } from 'react-native';
+import { View, Text, TouchableHighlight, Switch, Slider, StatusBar } from 'react-native';
 
 import Style from './Style'
 
@@ -23,6 +23,9 @@ export default class SettingsPage extends Component {
   render() {
     return (
       <View style={Style.settingsContainer}>
+        <StatusBar
+          barStyle="dark-content"
+        />
         <TouchableHighlight style={Style.inputButton} onPress={this._goBack.bind(this)}>
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
