@@ -22,6 +22,9 @@ export default class MainNaviPage extends Component {
         <TouchableHighlight style={Style.inputButton} onPress={this._goSettings.bind(this)}>
           <Text style={Style.inputButtonText}>Settings</Text>
         </TouchableHighlight>
+        <TouchableHighlight style={Style.inputButton} onPress={this._goNewSettings.bind(this)}>
+          <Text style={Style.inputButtonText}>Experimental Settings</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -40,5 +43,9 @@ export default class MainNaviPage extends Component {
   
   _goSettings() {
     this.props.navigator.push({ screen: 'SettingsPage' });
+  }
+  
+  _goNewSettings() {
+    this.props.navigator.push({ screen: 'NewSettings' });
   }
 }
