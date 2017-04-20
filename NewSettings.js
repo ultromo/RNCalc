@@ -147,7 +147,7 @@ export default class NewSettings extends Component {
               switchState={this.state.AMSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.STRICT=value; this.setState({AMSwitchOn: value})}}
               hasNavArrow={false}
-              title='Strict mode'
+              title='Wrap Ans in brackets'
             />
             <SettingsList.Item
               hasSwitch={true}
@@ -161,14 +161,14 @@ export default class NewSettings extends Component {
               switchState={this.state.MDSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.MDP=value; this.setState({MDSwitchOn: value})}}
               hasNavArrow={false}
-              title='Limit dp'
+              title='Round answers to 10dp'
             />
             <SettingsList.Item
               hasSwitch={true}
               switchState={this.state.SFSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
               hasNavArrow={false}
-              title='Display all answers to Sf'
+              title='Round answers to Sf'
             />
             <SettingsList.Item
               title='Precision'
@@ -215,12 +215,10 @@ export default class NewSettings extends Component {
               onValueChange={(value) => {this.setState({DFS: value.toString()})}}
               onSlidingComplete={(value) => {GLOBAL.DFS=value}}
             />
-            {/*
             <SettingsList.Item
-              title='Colour Settings'
-              onPress={() => this.props.navigator.push({ screen: 'ColourSettings' })}
+              title='Help'
+              onPress={() => this.props.navigator.push({ screen: 'HelpSettings' })}
             />
-            */}
             {/*
             <SettingsList.Item
               title='Wi-Fi'
