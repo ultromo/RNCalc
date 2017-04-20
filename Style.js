@@ -26,7 +26,7 @@ var Style = StyleSheet.create({
   
   displayText: {
     color: 'white',
-    fontSize: 60,
+    fontSize: 48,
     textAlign: 'right',
     padding: 20
   },
@@ -49,7 +49,7 @@ var Style = StyleSheet.create({
   },
 
   inputButtonText: {
-    fontSize: 36,
+    fontSize: 28,
     color: 'grey'
   },
   
