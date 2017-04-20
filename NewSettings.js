@@ -161,14 +161,14 @@ export default class NewSettings extends Component {
               switchState={this.state.MDSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.MDP=value; this.setState({MDSwitchOn: value})}}
               hasNavArrow={false}
-              title='Round answers to 10dp'
+              title='Round answers to 10 dec. places'
             />
             <SettingsList.Item
               hasSwitch={true}
               switchState={this.state.SFSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.SFO=value; this.setState({SFSwitchOn: value})}}
               hasNavArrow={false}
-              title='Round answers to Sf'
+              title='Round answers to sig. figures'
             />
             <SettingsList.Item
               title='Precision'
