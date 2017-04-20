@@ -74,6 +74,11 @@ export default class HelpSettings extends Component {
               hasNavArrow={false}
               title={'↑ ↓\nNavigate history'}
             />
+            <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <SettingsList.Item
+              hasNavArrow={false}
+              title={'Colour pickers\nSliders - (Hue, Saturation, Value)'}
+            />
           </SettingsList>
         </View>
       </View>
