@@ -44,7 +44,7 @@ export default class NewSettings extends Component {
         <StatusBar
           barStyle="dark-content"
         />
-        <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc',flexDirection:'row'}}>
+        <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc',flexDirection:'row',paddingLeft:10,paddingRight:10}}>
           <TouchableHighlight style={[{alignSelf:'center',flex:1,marginTop:30,marginBottom:10},this.props.highlight ? {alignSelf:'center',flex:1,marginTop:30,marginBottom:10,backgroundColor:'#FFFFFF'} : null]} onPress={this._goBack.bind(this)} onShowUnderlay={this._lightButton.bind(this)} onHideUnderlay={this._darkButton.bind(this)} underlayColor='#FFFFFF'>
             <Icon name="chevron-left" size={25} color={this.state.BC} />
           </TouchableHighlight>
@@ -151,17 +151,17 @@ export default class NewSettings extends Component {
             />
             <SettingsList.Item
               hasSwitch={true}
-              switchState={this.state.MDSwitchOn}
-              switchOnValueChange={(value) => {GLOBAL.MDP=value; this.setState({MDSwitchOn: value})}}
-              hasNavArrow={false}
-              title='Limit dp'
-            />
-            <SettingsList.Item
-              hasSwitch={true}
               switchState={this.state.RCSwitchOn}
               switchOnValueChange={(value) => {GLOBAL.RSCP=value; this.setState({RCSwitchOn: value})}}
               hasNavArrow={false}
               title='Reset cursor position'
+            />
+            <SettingsList.Item
+              hasSwitch={true}
+              switchState={this.state.MDSwitchOn}
+              switchOnValueChange={(value) => {GLOBAL.MDP=value; this.setState({MDSwitchOn: value})}}
+              hasNavArrow={false}
+              title='Limit dp'
             />
             <SettingsList.Item
               hasSwitch={true}
