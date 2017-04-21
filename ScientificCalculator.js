@@ -22,9 +22,9 @@ import InputButton from './InputButton';
 const inputButtons = [
   ['Ans', ',', '←', '→', '↑', '↓'],
   ['AC', 'RST', '(-)', 'π', 'e', '⌫'],
-  ['(', ')', '%', '/', 'pow(', 'fac('],
-  [7, 8, 9, '*', 'sin(', 'sin⁻¹('],
-  [4, 5, 6, '-', 'cos(', 'cos⁻¹('],
+  ['(', ')', '%', '÷', 'pow(', 'fac('],
+  [7, 8, 9, '×', 'sin(', 'sin⁻¹('],
+  [4, 5, 6, '−', 'cos(', 'cos⁻¹('],
   [1, 2, 3, '+', 'tan(', 'tan⁻¹('],
   [0, '.', 'log(', 'ln(', 'exp(', '=']
 ];
@@ -207,6 +207,18 @@ export default class ScientificCalculator extends React.Component {
     for (var r = 0; r < this.expression.length; r++){
       let subExp = this.expression[r];
       switch (subExp) {
+        case '+':
+          evExpression = evExpression.concat('+');
+          break;
+        case '−':
+          evExpression = evExpression.concat('-');
+          break;
+        case '×':
+          evExpression = evExpression.concat('*');
+          break;
+        case '÷':
+          evExpression = evExpression.concat('/');
+          break;
         case 'π':
           evExpression = evExpression.concat(' Math.PI ');
           break;
