@@ -22,11 +22,11 @@ import InputButton from './InputButton';
 const inputButtons = [
   ['Ans', ',', '←', '→', '↑', '↓'],
   ['AC', 'RST', '(-)', 'π', 'e', '⌫'],
-  ['(', ')', '%', '/', 'pow('],
-  [7, 8, 9, '*', 'sin('],
-  [4, 5, 6, '-', 'cos('],
-  [1, 2, 3, '+', 'tan('],
-  [0, '.', 'ln(', 'exp(', '=']
+  ['(', ')', '%', '/', 'pow(', 'fac('],
+  [7, 8, 9, '*', 'sin(', 'sin⁻¹('],
+  [4, 5, 6, '-', 'cos(', 'cos⁻¹('],
+  [1, 2, 3, '+', 'tan(', 'tan⁻¹('],
+  [0, '.', 'log(', 'ln(', 'exp(', '=']
 ];
 
 export default class ScientificCalculator extends React.Component {
@@ -182,7 +182,26 @@ export default class ScientificCalculator extends React.Component {
     });
     this.expression.splice(this.expressionInsert, 1);
   }
+
+  __factorial(n){
+    n = Math.round(n);
+    if (n <= 1){
+      return 1;
+    }
+    var ret = 1;
+    for (var fc = 2; fc <= n; fc++){
+      ret = ret * fc;
+      if (ret == Infinity){
+        break;
+      }
+    }
+    return ret;
+  }
   
+  __logbase(a, base){
+    return (Math.log(a) / Math.log(base));
+  }
+
   _evaluateExpression(){
     var evExpression = '';
     for (var r = 0; r < this.expression.length; r++){
@@ -212,6 +231,21 @@ export default class ScientificCalculator extends React.Component {
         case 'ln(':
           evExpression = evExpression.concat(' Math.log( ');
           break;
+        case 'log(':
+          evExpression = evExpression.concat(' this.__logbase( ');
+          break;
+        case 'sin⁻¹(':
+          evExpression = evExpression.concat(' Math.asin( ');
+          break;
+        case 'cos⁻¹(':
+          evExpression = evExpression.concat(' Math.acos( ');
+          break;
+        case 'tan⁻¹(':
+          evExpression = evExpression.concat(' Math.atan( ');
+          break;
+        case 'fac(':
+          evExpression = evExpression.concat(' this.__factorial( ');
+          break;
         case 'Ans':
           if (GLOBAL.STRICT == true){
             evExpression = evExpression.concat('(' + this.Ans.toString() + ')');
@@ -236,6 +270,10 @@ export default class ScientificCalculator extends React.Component {
       return a;
     }
     catch(err){
+      console.log(err.toString());
+      if (err instanceof RangeError){
+        return "Math error";
+      }
       //var a = err;
       //return a.toString();
       return "Syntax error";

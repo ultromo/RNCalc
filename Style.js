@@ -49,7 +49,7 @@ var Style = StyleSheet.create({
   },
 
   inputButtonText: {
-    fontSize: 28,
+    fontSize: 24,
     color: 'grey'
   },
   
@@ -67,6 +67,20 @@ var Style = StyleSheet.create({
   settingsContainer: {
     flex: 8,
     backgroundColor: '#FFFFFF'
+  },
+
+  settingsButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopWidth: 2,
+    borderColor: '#000000'
+  },
+
+  settingsBackButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
 

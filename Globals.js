@@ -8,7 +8,7 @@ module.exports = {
   DEDUP: true,
   STRICT: true,
   RSCP: true,
-  IBS: 28,
+  IBS: 24,
   DFS: 48,
   BCLR: '#DDDDDD',
   TCLR: '#808080'

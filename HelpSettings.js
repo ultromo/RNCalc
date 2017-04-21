@@ -34,7 +34,7 @@ export default class HelpSettings extends Component {
           barStyle="dark-content"
         />
         <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc',flexDirection:'row',paddingLeft:10,paddingRight:10}}>
-          <TouchableHighlight style={[{alignSelf:'center',flex:1,marginTop:30,marginBottom:10},this.props.highlight ? {alignSelf:'center',flex:1,marginTop:30,marginBottom:10,backgroundColor:'#FFFFFF'} : null]} onPress={this._goBack.bind(this)} onShowUnderlay={this._lightButton.bind(this)} onHideUnderlay={this._darkButton.bind(this)} underlayColor='#FFFFFF'>
+          <TouchableHighlight style={[{alignSelf:'center',flex:1,marginTop:30,marginBottom:10},this.props.highlight ? {alignSelf:'center',flex:1,marginTop:30,marginBottom:10,backgroundColor:'#f7f7f8'} : null]} onPress={this._goBack.bind(this)} onShowUnderlay={this._lightButton.bind(this)} onHideUnderlay={this._darkButton.bind(this)} underlayColor='#f7f7f8'>
             <Icon name="chevron-left" size={25} color={this.state.BC} />
           </TouchableHighlight>
           <View style={{flex:4}}>
@@ -61,6 +61,14 @@ export default class HelpSettings extends Component {
             <SettingsList.Item
               hasNavArrow={false}
               title={'pow(a, b)\nEquivalent to a^b'}
+            />
+            <SettingsList.Item
+              hasNavArrow={false}
+              title={'log(a, b)\nLogarithm of a to base b'}
+            />
+            <SettingsList.Item
+              hasNavArrow={false}
+              title={'fac(a)\nFactorial of a'}
             />
             <SettingsList.Item
               hasNavArrow={false}

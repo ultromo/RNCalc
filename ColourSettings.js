@@ -21,10 +21,10 @@ export default class ColourSettings extends Component {
         <StatusBar
           barStyle="dark-content"
         />
-        <TouchableHighlight style={Style.inputButton} onPress={this._goBack.bind(this)}>
+        <TouchableHighlight style={Style.settingsBackButton} onPress={this._goBack.bind(this)}>
           <Text style={Style.inputButtonText}>Back</Text>
         </TouchableHighlight>
-        <View style={Style.inputButton}>
+        <View style={Style.settingsButton}>
           <Text style={Style.inputButtonText}>Button colour</Text>
         </View>
         <ColorPicker
@@ -32,7 +32,7 @@ export default class ColourSettings extends Component {
           onColorChange={(color) => {GLOBAL.BCLR=fromHsv(color)}}
           style={{flex: 2}}
         />
-        <View style={Style.inputButton}>
+        <View style={Style.settingsButton}>
           <Text style={Style.inputButtonText}>Text colour</Text>
         </View>
         <ColorPicker
