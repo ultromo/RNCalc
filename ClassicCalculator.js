@@ -18,9 +18,9 @@ import Style from './Style';
 import InputButton from './InputButton';
 
 const inputButtons = [
-  ['AC', '+/-', '%', '/'],
-  [7, 8, 9, '*'],
-  [4, 5, 6, '-'],
+  ['AC', '+/-', '%', '÷'],
+  [7, 8, 9, '×'],
+  [4, 5, 6, '−'],
   [1, 2, 3, '+'],
   [0, '.', 'ln', '=']
 ];
@@ -144,10 +144,42 @@ export default class ClassicCalculator extends React.Component {
           divBy: 1
         });
         break;
-      case '/':
-      case '*':
+      case '×':
+        GLOBAL.UIN = true;
+        this.setState({
+          selectedSymbol: '*',
+          previousInputValue: this.state.inputValue,
+          inputValue: 0,
+          divBy: 1
+        });
+        break;
+      case '÷':
+        GLOBAL.UIN = true;
+        this.setState({
+          selectedSymbol: '/',
+          previousInputValue: this.state.inputValue,
+          inputValue: 0,
+          divBy: 1
+        });
+        break;
       case '+':
-      case '-':
+        GLOBAL.UIN = true;
+        this.setState({
+          selectedSymbol: '+',
+          previousInputValue: this.state.inputValue,
+          inputValue: 0,
+          divBy: 1
+        });
+        break;
+      case '−':
+        GLOBAL.UIN = true;
+        this.setState({
+          selectedSymbol: '-',
+          previousInputValue: this.state.inputValue,
+          inputValue: 0,
+          divBy: 1
+        });
+        break;
       case '%':
         GLOBAL.UIN = true;
         this.setState({

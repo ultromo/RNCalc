@@ -9,6 +9,7 @@ module.exports = {
   STRICT: true,
   RSCP: true,
   IBS: 24,
+  SBS: 16,
   DFS: 48,
   BCLR: '#DDDDDD',
   TCLR: '#808080'

@@ -33,6 +33,7 @@ export default class NewSettings extends Component {
       DESwitchOn: GLOBAL.DEDUP,
       DFS: GLOBAL.DFS.toString(),
       IBS: GLOBAL.IBS.toString(),
+      SBS: GLOBAL.SBS.toString(),
       SF: GLOBAL.SF.toString(),
       BC: "#007AFF"
     }
@@ -186,9 +187,24 @@ export default class NewSettings extends Component {
               onSlidingComplete={(value) => {GLOBAL.SF=value}}
             />
             <SettingsList.Item
-              title='Button font size'
+              title='Classic calculator button font size'
               hasNavArrow={false}
               titleInfo={this.state.IBS}
+              titleInfoStyle={styles.titleInfoStyle}
+            />
+            <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <Slider 
+              maximumValue={40}
+              minimumValue={8} 
+              step={0.5} 
+              value={GLOBAL.IBS}
+              onValueChange={(value) => {this.setState({IBS: value.toString()})}}
+              onSlidingComplete={(value) => {GLOBAL.IBS=value}}
+            />
+            <SettingsList.Item
+              title='Scientific calculator button font size'
+              hasNavArrow={false}
+              titleInfo={this.state.SBS}
               titleInfoStyle={styles.titleInfoStyle}
             />
             <SettingsList.Header headerStyle={{marginTop:15}}/>
@@ -196,9 +212,9 @@ export default class NewSettings extends Component {
               maximumValue={48}
               minimumValue={16} 
               step={0.5} 
-              value={GLOBAL.IBS}
-              onValueChange={(value) => {this.setState({IBS: value.toString()})}}
-              onSlidingComplete={(value) => {GLOBAL.IBS=value}}
+              value={GLOBAL.SBS}
+              onValueChange={(value) => {this.setState({SBS: value.toString()})}}
+              onSlidingComplete={(value) => {GLOBAL.SBS=value}}
             />
             <SettingsList.Item
               title='Display font size'

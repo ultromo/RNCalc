@@ -17,7 +17,7 @@ import {
 
 import Style from './Style';
 
-import InputButton from './InputButton';
+import InputButton from './ScientificInputButton';
 
 const inputButtons = [
   ['Ans', ',', '←', '→', '↑', '↓'],
