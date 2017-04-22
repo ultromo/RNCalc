@@ -194,7 +194,7 @@ export default class NewSettings extends Component {
             />
             <SettingsList.Header headerStyle={{marginTop:15}}/>
             <Slider 
-              maximumValue={40}
+              maximumValue={48}
               minimumValue={8} 
               step={0.5} 
               value={GLOBAL.IBS}
@@ -210,7 +210,7 @@ export default class NewSettings extends Component {
             <SettingsList.Header headerStyle={{marginTop:15}}/>
             <Slider 
               maximumValue={48}
-              minimumValue={16} 
+              minimumValue={8} 
               step={0.5} 
               value={GLOBAL.SBS}
               onValueChange={(value) => {this.setState({SBS: value.toString()})}}
