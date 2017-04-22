@@ -8,6 +8,7 @@ module.exports = {
   DEDUP: true,
   STRICT: true,
   RSCP: true,
+  DEGS: false,
   IBS: 24,
   SBS: 16,
   DFS: 48,

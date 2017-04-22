@@ -31,6 +31,7 @@ export default class NewSettings extends Component {
       RSSwitchOn: GLOBAL.RSTOE,
       RISwitchOn: GLOBAL.RSTOI,
       DESwitchOn: GLOBAL.DEDUP,
+      DGSwitchOn: GLOBAL.DEGS,
       DFS: GLOBAL.DFS.toString(),
       IBS: GLOBAL.IBS.toString(),
       SBS: GLOBAL.SBS.toString(),
@@ -122,6 +123,13 @@ export default class NewSettings extends Component {
         </View>
  */} 
             <SettingsList.Header headerStyle={{marginTop:15}}/>
+            <SettingsList.Item
+              hasSwitch={true}
+              switchState={this.state.DGSwitchOn}
+              switchOnValueChange={(value) => {GLOBAL.DEGS=value; this.setState({DGSwitchOn: value})}}
+              hasNavArrow={false}
+              title='Use degrees instead of radians'
+            />
             <SettingsList.Item
               hasSwitch={true}
               switchState={this.state.RSSwitchOn}

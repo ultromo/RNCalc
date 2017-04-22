@@ -202,6 +202,14 @@ export default class ScientificCalculator extends React.Component {
     return (Math.log(a) / Math.log(base));
   }
 
+  __d2r(tf, x){
+    return (tf(x/180*Math.PI));
+  }
+
+  __r2d(tf, x){
+    return (tf(x)*180/Math.PI);
+  }
+
   _evaluateExpression(){
     var evExpression = '';
     for (var r = 0; r < this.expression.length; r++){
@@ -226,13 +234,28 @@ export default class ScientificCalculator extends React.Component {
           evExpression = evExpression.concat(' Math.E ');
           break;
         case 'sin(':
-          evExpression = evExpression.concat(' Math.sin( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__d2r( Math.sin, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.sin( ');
+          }
           break;
         case 'cos(':
-          evExpression = evExpression.concat(' Math.cos( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__d2r( Math.cos, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.cos( ');
+          }
           break;
         case 'tan(':
-          evExpression = evExpression.concat(' Math.tan( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__d2r( Math.tan, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.tan( ');
+          }
           break;
         case 'exp(':
           evExpression = evExpression.concat(' Math.exp( ');
@@ -247,13 +270,28 @@ export default class ScientificCalculator extends React.Component {
           evExpression = evExpression.concat(' this.__logbase( ');
           break;
         case 'sin⁻¹(':
-          evExpression = evExpression.concat(' Math.asin( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__r2d( Math.asin, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.asin( ');
+          }
           break;
         case 'cos⁻¹(':
-          evExpression = evExpression.concat(' Math.acos( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__r2d( Math.acos, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.acos( ');
+          }
           break;
         case 'tan⁻¹(':
-          evExpression = evExpression.concat(' Math.atan( ');
+          if (GLOBAL.DEGS){
+            evExpression = evExpression.concat(' this.__r2d( Math.atan, ');
+          }
+          else{
+            evExpression = evExpression.concat(' Math.atan( ');
+          }
           break;
         case 'fac(':
           evExpression = evExpression.concat(' this.__factorial( ');
