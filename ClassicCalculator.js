@@ -121,7 +121,7 @@ export default class ClassicCalculator extends React.Component {
       })
     }
   }
-
+  
   __deconvert(str){
     switch (str) {
       case '*':
