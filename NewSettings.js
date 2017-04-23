@@ -295,7 +295,7 @@ export default class NewSettings extends Component {
       </View>
     );
   }
-    
+  
   _goBack() {
     this.props.navigator.pop();
   }

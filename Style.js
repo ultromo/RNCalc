@@ -35,7 +35,7 @@ var Style = StyleSheet.create({
     flex: 8,
     backgroundColor: '#DDDDDD'
   },
-
+  
   inputButton: {
     flex: 1,
     alignItems: 'center',
@@ -47,7 +47,7 @@ var Style = StyleSheet.create({
   inputButtonHighlighted: {
     backgroundColor: '#999999'
   },
-
+  
   inputButtonText: {
     fontSize: 24,
     color: 'grey'
@@ -68,7 +68,7 @@ var Style = StyleSheet.create({
     flex: 8,
     backgroundColor: '#FFFFFF'
   },
-
+  
   settingsButton: {
     flex: 1,
     alignItems: 'center',
@@ -76,7 +76,7 @@ var Style = StyleSheet.create({
     borderTopWidth: 2,
     borderColor: '#000000'
   },
-
+  
   settingsBackButton: {
     flex: 1,
     alignItems: 'center',

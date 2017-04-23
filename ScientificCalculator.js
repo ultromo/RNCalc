@@ -182,7 +182,7 @@ export default class ScientificCalculator extends React.Component {
     });
     this.expression.splice(this.expressionInsert, 1);
   }
-
+  
   __factorial(n){
     n = Math.round(n);
     if (n <= 1){
@@ -201,15 +201,15 @@ export default class ScientificCalculator extends React.Component {
   __logbase(a, base){
     return (Math.log(a) / Math.log(base));
   }
-
+  
   __d2r(tf, x){
     return (tf(x/180*Math.PI));
   }
-
+  
   __r2d(tf, x){
     return (tf(x)*180/Math.PI);
   }
-
+  
   _evaluateExpression(){
     var evExpression = '';
     for (var r = 0; r < this.expression.length; r++){

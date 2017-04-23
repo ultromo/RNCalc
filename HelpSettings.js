@@ -92,7 +92,7 @@ export default class HelpSettings extends Component {
       </View>
     );
   }
-    
+  
   _goBack() {
     this.props.navigator.pop();
   }

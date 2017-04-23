@@ -32,7 +32,7 @@ export default class MainNaviPage extends Component {
   _goBack() {
     this.props.navigator.pop();
   }
-
+  
   _goClassicCalculator() {
     this.props.navigator.replacePreviousAndPop({ screen: 'ClassicCalculator' });
   }
