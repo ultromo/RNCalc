@@ -83,7 +83,7 @@ export default class ClassicCalculator extends React.Component {
         inputRow.push(
           <InputButton
             value={input}
-            highlight={this.state.selectedSymbol === input}
+            highlight={this.__deconvert(this.state.selectedSymbol) === input}
             onPress={this._onInputButtonPressed.bind(this, input)}
             key={r + "-" + i}/>
           );
@@ -119,6 +119,21 @@ export default class ClassicCalculator extends React.Component {
         inputValue: this.state.inputValue + num / this.state.divBy,
         divBy: 10 * this.state.divBy
       })
+    }
+  }
+
+  __deconvert(str){
+    switch (str) {
+      case '*':
+        return '×';
+      case '/':
+        return '÷';
+      case '+':
+        return '+';
+      case '-':
+        return '−';
+      default:
+        return str;
     }
   }
   
